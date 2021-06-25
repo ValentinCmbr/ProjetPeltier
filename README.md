@@ -4,4 +4,4 @@ Vous allez retrouver le programme que j'ai réalisé dans le cadre de mon projet
 
 Ce programme est une classe qui permet de récupérer une température et de l'étalonner avec un CSV
 
-Il est maintenant fonctionnel.
+Il a été réalisé pour être intégrer à une solution générale afin de reguler la température d'une LED.
