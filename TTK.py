@@ -46,7 +46,6 @@ class TTK:
         else:
                             # Valeur positive, il suffit de decaler les bits pour obtenir la valeur
             valeurbrute >>= 3 # N'a besoin que de 12 MS
-    
         self.valeurbrute = valeurbrute * 0.25
         print(self.valeurbrute)# Echelle de 0,25 degres celsius et retourne la valeur
         if valeurbrute < self.min or valeurbrute > self.max:  #On vérifie que la valeur rentre dans la plage valide
@@ -56,17 +55,14 @@ class TTK:
         print(valide)
         return valide
     
-    def _read16(self):
-                # Lire 16 bits à partir du bus SPI
+    def _read16(self):# Lire 16 bits à partir du bus SPI
         raw = self._spi.read(2)
         if raw is None or len(raw) != 2:
             raise RuntimeError('Ne peux pas lire')
         value = raw[0] << 8 | raw[1]
         return value
-
-                
-    def lire_temp_corrigee(self):
-    
+        
+    def lire_temp_corrigee(self):   
         if not self.lire_temp():            #On va chercher la valeur de la température qui est disponible dans valeurbrute
             return ERREUR
         else:
@@ -97,11 +93,15 @@ class TTK:
             print(x1,y1,x2,y2) 
             pente = (y1 - y2) / (x1 - x2) #On calcule la pente
             print(pente)
-            offset = (y1 - y2) - pente * (x1 - x2) #On calcule l'offset
+            offset = (y1* x2 - y2 * x1) / (x2 - x1)a #On calcule l'offset
             print(offset)
             valeurcorrigee = pente * self.valeurbrute + offset #On calcule valeurcorrigee
             return valeurcorrigee #On retourne valeurcorrigee
-     
-ttk = TTK()
-print(ttk.lire_temp_corrigee())
+ 
+running(true)
+while(running):
+    try:
+        ttk = TTK()
+        print(ttk.lire_temp_corrigee())
+        time
     
